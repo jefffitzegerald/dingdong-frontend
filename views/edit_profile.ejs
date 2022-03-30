@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Profile/edit.css">
+    <%- include('partials/head.ejs') %>
+</head>
+<body>
+    
+    <%- include('partials/navbar.ejs') %>
+
+    <div class="edit-profile">
+        <form action="/me/settings/save" method="post">
+            <p class=>USERNAME</p>
+            <input type="text" name="username" placeholder="Username" value="<%=req.session.user.username%>" required>
+            <p>Coming Soon</p>
+            <input type="password" name="password" placeholder="Coming Soon" disabled>
+            <div>
+                <button type="submit" class="btn-submit">
+                    SAVE
+                </button>
+            </div>
+        </form>
+        <img src="<%=req.session.user.avatar%>" alt="" class="profile-picture-edit">
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+
+</body>
+</html>

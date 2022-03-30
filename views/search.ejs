@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:site_name" content="Ding Dong Entertainment" />
+        <meta property="og:title" content="Search" />
+        <meta property="og:description" content="Find video or track from Ding Dong Entertainment freely now!">
+        <meta property="og:type" content="image/jpeg" />
+        <meta property="og:url" content="<%=req.domain%>/search" />
+        <meta property="og:image" content="<%=req.domain%>/storage/image/ding_dong_banner.jpeg" />
+        <link rel="stylesheet" href="/search.css">
+        <%- include('partials/head.ejs') %> 
+    </head>
+    <body>
+        <%- include('partials/navbar.ejs') %>
+
+        <%- include('partials/search.ejs') %>
+
+        <div class="results">
+
+            <%if(req.query.search){%>
+
+                <%if(results){%>
+
+                    <%for(let result of results){%>
+
+                        <%if(req.query.type.toLowerCase() === "soundcloud"){%>
+                            <div id="/<%=result.snippet.user.permalink%>/<%=result.snippet.permalink%>" class="result <%=req.query.type%>">
+                        <%}else{%>
+                            <div id="<%=result.id%>" class="result <%=req.query.type%>">
+                        <%}%>
+
+                            <div class="thumbnail-container">
+                                <%if(req.query.type === "youtube"){%>
+                                    <img class="thumbnail" src="https://i.ytimg.com/vi/<%=result.id%>/hqdefault.jpg" alt="">
+                                <%}else if(req.query.type === "soundcloud"){%>
+                                    <img class="thumbnail" src="<%=result.thumbnails[0].url || `${req.domain}/storage/image/icon-soundcloud.png`%>" alt="">
+                                <%}else if(req.query.type === "spotify"){%>
+                                    <img class="thumbnail" src="<%=result.thumbnails[0].url%>" alt="">
+                                <%}%>
+                            </div>
+            
+                            <div class="author">
+                                <p>
+                                    <%=result.author.name%>
+                                </p>
+                            </div>
+            
+                            <div class="title">
+                                <p>
+                                    <%=result.title.length > 35 ? `${result.title.substr(0, 35)}...` : result.title%>
+                                </p>
+                            </div>
+            
+                        </div>
+
+                    <%}%>
+
+                <%}%>
+
+            <%}%>
+
+        </div>
+
+        <script src="./search.js"></script>
+    </body>
+</html>

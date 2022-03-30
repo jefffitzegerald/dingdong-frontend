@@ -1,0 +1,282 @@
+<div class="navbar">
+    <nav class="desktop">
+
+        <div class="logo">
+            <img src="<%=req.domain%>/storage/image/circle-icon.png" class="img-logo" alt="">
+        </div>
+
+        <ul class="nav-items">
+            <li class="nav-item">ABOUT</li>
+            <li class="nav-item">SEARCH</li>
+            <li class="nav-item">MEMBERSHIP</li>
+            <li class="nav-item">PROFILE</li>
+        </ul>
+
+        <%if(req.session.user){%>
+            <div class="btn-container">
+                <button id="logoutBtn" type="button" class="btn-logout">
+                    LOGOUT
+                </button>
+            </div>
+        <%}else{%>
+            <div class="btn-container">
+                <button id="loginBtn" type="button" class="btn-login">
+                    LOGIN
+                </button>
+            </div>
+        <%}%>
+
+    </nav>
+
+    <nav class="mobile">
+
+        <div class="logo">
+            <img src="<%=req.domain%>/storage/image/circle-icon.png" class="img-logo" alt="">
+        </div>
+
+        <div id="dropdown" class="dropdown">
+            <div class="dropdown-strip"></div>
+            <div class="dropdown-strip"></div>
+            <div class="dropdown-strip"></div>
+        </div>
+
+    </nav>
+</div>
+
+<div style="opacity: 0;" id="dropdown-content" class="dropdown-content">
+    
+    <div class="header">
+        <h2>DING DONG</h2>
+        <div id="close" class="close-arrow">
+            <i style="color: white;" class="bi bi-arrow-bar-left"></i>
+        </div>
+    </div>
+
+    <div class="items-container">
+
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="menu-item-name">ABOUT</div>
+                <i class="bi bi-arrow-right" onclick="direct('about');"></i>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-name">SEARCH</div>
+                <i class="bi bi-arrow-right" onclick="direct('search');"></i>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-name">MEMBERSHIP</div>
+                <i class="bi bi-arrow-right" onclick="direct('membership')"></i>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-name">PROFILE</div>
+                <i class="bi bi-arrow-right" onclick="direct('me');"></i>
+            </div>
+        </div>
+        
+        <div>
+            <%if(req.session.user){%>
+                <button id="logoutBtn" class="btn-logout">LOGOUT</button>
+            <%}else{%>
+                <button id="loginBtn" class="btn-login">LOGIN</button>
+            <%}%> 
+        </div>
+
+        <div class="banner">
+            <img class="img-banner" src="<%=req.domain%>/storage/image/ding_dong_banner.jpeg" alt="">
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="/navbar.js"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    .navbar {
+        background-color: #fff;
+        height: 150px;
+        width: 100%;
+    }
+
+    .mobile {
+        display: none;
+        margin: 0 10px;
+    }
+
+    .dropdown-content {
+        display: none;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: 'Poppins', sans-serif;
+        height: 150px;
+    }
+
+    .btn-login, .btn-logout {
+        cursor: pointer;
+        background: #D8BBBB;
+        color: #000;
+        width: 150px;
+        height: 60px;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        margin-right: 13px;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .btn-login:hover, .btn-logout:hover {
+        opacity: 65%;
+        background: #D8BBBB;
+    }
+
+    .img-logo {
+        flex: 1;
+        width: auto;
+        height: 120px;
+        border-radius: 60px;
+        border: 4px solid #000;
+        margin-left: 4rem;
+    }
+
+    ul li {
+        display: inline;
+        text-decoration: none;
+    }
+
+    .nav-items {
+        flex: 5;
+        flex-direction: row;
+    }
+
+    .logo, .nav-item {
+        cursor: pointer;
+    }
+
+    .nav-item {
+        font-weight: bold;
+    }
+
+    .nav-items li {
+        list-style: none;
+        margin-right: 65px;
+    }
+
+    .nav-items li {
+        color: #000;
+        font-weight: 600;
+        font-size: 24px;
+        text-decoration: none;
+    }
+
+    .nav-items li:hover {
+        opacity: 65%;
+    }
+
+    .btn-container {
+        flex: 1;
+    }
+
+    @media only screen and (max-width:600px ) {
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+        }
+
+        .close-arrow {
+            margin: auto;
+            color: white;
+        }
+
+        h2 {
+            margin-left: 5px;
+        }
+
+        h2, .close-arrow {
+            font-size: 3rem;
+        }
+        .desktop {
+            display: none;
+        }
+
+        .mobile {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .dropdown-strip {
+            margin-top: 10px;
+            height: 10px;
+            width: 50px;
+            background-color: #D8BBBB;
+        }
+
+        .img-logo {
+            width: auto;
+            height: 5rem;
+            margin: 0;
+        }
+
+        .dropdown-content {
+            background-color: #000;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .btn-login, .btn-logout {
+            cursor: pointer;
+            width: 90px;
+            height: 40px;
+            border: none;
+            margin: 10px 0 0 0;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .menu-item {
+            margin: 15px 0 15px 0;
+            color: white;
+            font-size: 2rem;
+            justify-content: space-between;
+            display: flex;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .items-container {
+            margin: 10px;
+        }
+
+        .banner {
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 20%;
+        }
+
+        .img-banner {
+            width: auto;
+            height: 8rem;
+            border-radius: 10px;
+        }
+
+        
+        .dropdown-content {
+            display:list-item;
+        }
+    }
+</style>

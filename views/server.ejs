@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/server.css">
+  <%- include('partials/head.ejs') %>
+</head>
+
+<body>
+
+  <%- include('partials/navbar.ejs') %>
+
+  <div class="container">
+
+    <div class="regular-cmd">
+
+      <div class="top-title">
+        <h1>Regular Commands</h1>
+      </div>
+
+      <div class="top-table">
+        <table>
+          <tr>
+            <th id="name">Name</th>
+            <th>Description</th>
+          </tr>
+          <%for(let command of reguler_commands){%>
+
+            <tr>
+                <td id="name"><%=command.data.name%></td>
+                <td><%=command.data.description%></td>
+            </tr>
+
+          <%}%>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="m-cmd">
+
+      <div class="bottom-title">
+        <img src="<%=req.domain%>/storage/image/premium_badge_3.png" width="86" height="88">
+        <h1>Membership Commands</h1>
+      </div>
+
+      <div class="bottom-table">
+        <table>
+          <tr>
+            <th id="name">Name</th>
+            <th>Description</th>
+          </tr>
+          <%for(let command of membership_commands){%>
+
+            <tr>
+                <td id="name"><%=command.data.name%></td>
+                <td><%=command.data.description%></td>
+            </tr>
+
+          <%}%> 
+        </table>
+      </div>
+
+    </div>
+
+    <button type="button" id="manage-queue">
+      <span>
+        <img src="<%=req.domain%>/storage/image/premium_badge_3.png" alt="" width="80px" height="80px">
+      </span>
+      MANAGE QUEUE
+    </button>
+
+  </div>
+
+  <script type="text/javascript" src="/server.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #000;
+    color: #fff;
+}
+
+/* Top */
+
+.top-bg {
+    background-image: url("/storage/image/profile_top.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 550px;
+}
+
+.top-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+}
+
+.profile-picture-edit {
+    border-radius: 50px;
+    width: 322px;
+    height: auto;
+}
+
+.info {
+    padding: 2rem;
+    width: 900px;
+    justify-content: space-around;
+}
+
+.info h1 {
+    font-size: 64px;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.info p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    margin-top: 30px;
+}
+
+.info button {
+    background: #C4C4C4;
+    color: #000;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    width: 320px;
+    height: 70px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    cursor: pointer;
+    margin-right: 40px;
+}
+
+.info button:hover {
+    opacity: 85%;
+}
+
+/* Middle */
+
+.middle-bg {
+    background-image: url("/storage/image/profile_middle.png");
+    background-repeat: none;
+    background-size: cover;
+    height: 950px;
+}
+
+.middle-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.middle-container h1 {
+    width: 100%;
+    text-align: center;
+    margin: 2rem;
+    font-size: 64px;
+}
+
+.content-dc {
+    flex-basis: 700px;
+    text-align: center;
+}
+
+.content-spt {
+    flex-basis: 700px;
+    text-align: center;
+}
+
+.content-yt {
+    flex-basis: 700px;
+    text-align: center;
+}
+
+.middle-container button {
+    background: #C4C4C4;
+    color: #000;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    width: 320px;
+    height: 70px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.middle-container button:hover {
+    opacity: 85%;
+}
+
+/* Bottom */
+
+.bottom-bg {
+    background-image: url("/storage/image/profile_bottom.png");
+    background-repeat: none;
+    background-size: cover;
+    height: 588px;
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 588px;
+}
+
+.bottom-items {
+    text-align: center;
+}

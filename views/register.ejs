@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/register.css">
+    <%- include('partials/head.ejs') %>
+</head>
+
+<body>
+
+    <%- include('partials/navbar.ejs') %>
+
+    <div class="registerbox-container">
+        <div class="registerbox">
+
+            <h1>REGISTER</h1>
+            <form action="/register/callback" method="post">
+                <input id="email" type="text" name="email" placeholder="Email" required>
+                <div id="alert_email"></div>
+                <input id="username" type="text" name="username" placeholder="Username" required>
+                <input id="password" type="password" name="password" placeholder="Password" minlength="8" required>
+                <input id="confirm_password" type="password" name="confirm_password" placeholder="Confirm Password" required>
+                <div id="alert_password"></div>
+                <span class="login-direct">Already have account? Login now!</span>
+                <input id="submit" type="submit" value="REGISTER">
+            </form>
+        </div>
+        <div class="img-nenek">
+            <img src="<%=req.domain%>/storage/image/image_28.png" class="nenek" alt="">
+        </div>
+    </div>
+
+    <script src="./register.js"></script> 
+</body>
+
+</html>

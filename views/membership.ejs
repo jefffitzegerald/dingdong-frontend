@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:site_name" content="Ding Dong Entertainment" />
+    <meta property="og:title" content="Membership" />
+    <meta property="og:description" content="Find video or track from Ding Dong Entertainment freely now!">
+    <meta property="og:type" content="image/jpeg" />
+    <meta property="og:url" content="<%=req.domain%>/membership" />
+    <meta property="og:image" content="<%=req.domain%>/storage/image/ding_dong_banner.jpeg" />
+    <link rel="stylesheet" href="/membership.css">
+    <%- include('partials/head.ejs') %>
+</head>
+<body>
+
+    <%- include('partials/navbar.ejs') %>
+    
+    <div class="membership-container">
+        <div class="membership-items">
+            <h1>COMING</h1>
+            <img src="<%=req.domain%>/storage/image/premium_badge_3.png" alt="">
+            <h1>SOON</h1>
+        </div>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+
+</body>
+</html>

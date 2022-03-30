@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/playlist-list.css">
+    <%- include('partials/head.ejs') %>
+</head>
+<body>
+
+    <div id="popup"></div>
+
+    <!-- <div class="popup">
+        <div class="popup-box">
+            <h1>Create Playlist</h1>
+            <input type="text" name="" id="" placeholder="Input Name">
+            <button class="green">Yes</button>
+            <button class="red">No</button>
+        </div>
+    </div> -->
+    
+    <div class="allbutfooter">
+        
+        <%- include('partials/navbar.ejs') %>
+
+        <div class="top-container">
+            <h1>Playlist List</h1>
+            <button class="plus-btn" id="add"></button>
+        </div>
+
+        <hr>
+        
+        <%if(playlist){%>
+
+            <%if(playlist.playlist.length > 0){%>
+
+                <div class="list-container">
+
+                    <%for(let pl of playlist.playlist){%>
+
+                        <div class="list" id="<%=pl.id%>">
+                            <span class="box">
+                                <%if(pl.items.length > 0){%>
+
+                                    <img class="first-song-banner" src="<%=pl.items[0].track.thumbnails[0].url%>" alt="">
+
+                                <%}else{%>
+
+                                    <img class="replace-banner" src="<%=req.domain%>/storage/image/black_icon.png" alt="">
+
+                                <%}%>
+                            </span>
+                            <h1><%=pl.title.length > 12 ? `${pl.title.substr(0, 12)}...` : pl.title%></h1>
+                        </div>
+
+                    <%}%> 
+
+                </div>
+
+            <%}else{%>
+
+                <div class="blank">
+
+                    <h2>There Are No Playlists Here</h2>
+                    <button id="quick-create" class="create-button">
+                        <i class="bi bi-cloud-plus"></i>
+                        CREATE PLAYLIST
+                    </button>
+    
+                </div>
+
+            <%}%>
+
+        <%}else{%>
+
+            <div class="blank">
+
+                <h2>There Are No Playlists Here</h2>
+                <button id="quick-create" class="create-button">
+                    <i class="bi bi-cloud-plus"></i>
+                    CREATE PLAYLIST
+                </button>
+
+            </div>
+
+        <%}%>
+
+    </div>
+
+    <script type="text/javascript" src="/playlist-list.js"></script>
+
+</body>
+</html>

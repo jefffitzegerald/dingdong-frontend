@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('partials/head.ejs') %> 
+    <link rel="stylesheet" href="./login.css">
+</head>
+
+<body>
+
+    <%- include('partials/navbar.ejs') %> 
+
+    <div class="loginbox-container">
+        <div class="loginbox">
+            <h1>LOGIN</h1>
+            <form action="/login/callback" method="post">
+                <input id="username" type="text" name="username" placeholder="Username/Email">
+                <input id="password" type="password" name="password" placeholder="Password">
+                <span class="register">Don't have account? Register now!</span>
+                <div class="login">
+                    <input id="submit" type="submit" value="Login">
+                </div>
+            </form>
+            <hr>
+            <button type="button" value="google" class="auth-btn">
+                <div class="btn-container">
+                    <img src="<%=req.domain%>/storage/image/logo-gugel-1.svg" class="btn-icon" alt="" width="47px" height="47px">
+                    <span class="btn-text">LOGIN WITH GOOGLE</span>
+                </div>
+            </button>
+            <button value="discord" type="button" class="auth-btn">
+                <div class="btn-container">
+                    <img src="<%=req.domain%>/storage/image/Discord-Logo-White_1.svg" class="btn-icon" alt="" width="47px" height="47px">
+                    <span class="btn-text">LOGIN WITH DISCORD</span>
+                </div>
+            </button>
+        </div>
+    </div>
+    <script src="./login.js"></script>
+</body>
+
+</html>

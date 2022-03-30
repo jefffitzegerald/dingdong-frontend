@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:site_name" content="Ding Dong Entertainment" />
+    <meta property="og:title" content="<%=video.title.length > 67 ? `${video.title.substr(0, 67)}...` : video.title%>" />
+    <meta property="og:description" content="<%=video.description.length > 256 ? `${video.description.substr(0, 256)}...` : video.description%>">
+    <meta property="og:url" content="<%=req.domain%>/youtube/<%=req.params.id%>" />
+    <meta property="og:image" content="<%=video.thumbnails[2].url%>" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
+    <meta property="og:type" content="video.movie" />
+    <meta property="og:video" content="https://www.youtube.com/embed/<%=req.params.id%>" />
+    <meta property="og:video:width" content="1280" />
+    <meta property="og:video:height" content="720" />
+    <link rel="stylesheet" href="/youtube.css">
+    <%- include('partials/head.ejs') %>
+</head>
+<body>
+
+    <div id="popup"></div>
+
+    <div class="allbutfooter">
+
+        <%- include('partials/navbar.ejs') %>
+
+        <%- include('partials/search.ejs') %>
+
+        <div class="content">
+
+            <div class="box-img">
+                <video id="frame" autoplay src="/storage/video/<%=req.session.title%>_<%=req.session.id%>.mp4"></video>
+                <h1><%=video.title.length > 25 ? `${video.title.substr(0, 22)}...` : video.title%></h1>
+            </div>
+
+            <div class="btn-content">
+                <button class="btn-1">
+                    <img src="<%=req.domain%>/storage/image/plus_sign.png" alt="" width="47px" height="47px">
+                    <span>Add playlist</span>
+                </button>
+                <button class="btn-2">
+                    <span>Download</span>
+                </button>
+                <button class="btn-3">
+                    <img src="<%=req.domain%>/storage/image/youtube-listen.png" alt="">
+                    <span>Watch On Youtube</span>
+                </button>
+            </div>
+
+            <div class="desc">
+                <p id="description"></p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="box-player">
+        <div class="img-container">
+            <img class="image-player" id="image-player" src="<%=video.author.thumbnails[0].url%>" alt="">
+        </div>
+        <div class="playback">
+            <div class="up">
+                <img class="shuffle control" src="<%=req.domain%>/storage/image/shuffle.png" alt="" width="30" height="30">
+                <img class="previous control" src="<%=req.domain%>/storage/image/previous.png" alt="" width="60" height="60">
+                <img class="playpauseTrack" src="<%=req.domain%>/storage/image/pause-circle-fill.svg" height="100" width="100" alt="">
+                <img class="next control" src="<%=req.domain%>/storage/image/next.png" alt="" width="60" height="60">
+                <img class="loop control" src="<%=req.domain%>/storage/image/loop.png" alt="" width="50" height="50">
+            </div>
+            <div class="bottom">
+                <span class="duration-time">00:00</span>
+                <div class="bar-area">
+                    <input type="range" name="progress" value="0" min="0" max="100" id="progress">
+                </div>
+                <span class="total-duration"><%=bot.msToTime(video.length_milliSeconds)%></span>
+            </div>
+        </div>
+    
+        <div class="volume">
+            <i class="volume-control bi bi-volume-down"></i>
+            <div class="volume-area">
+                <input type="range" value="100" name="volume" id="volume">
+            </div>
+            <i class="volume-control bi bi-volume-up"></i>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/youtube.js"></script>
+    <script type="text/javascript" src="/player/youtube.js"></script>
+    
+</body>
+</html>

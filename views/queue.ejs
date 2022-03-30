@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/queue.css">
+    <%- include('partials/head.ejs') %>
+</head>
+
+<body>
+
+    <div id="popup"></div>
+
+    <%- include('partials/navbar.ejs') %> 
+
+    <div class="content-wrapper">
+
+        <div class="content-left">
+
+            <div class="search">
+                <input type="text" id="query" placeholder="SEARCH SONG">
+                <select id="type">
+                    <option value="youtube">Youtube</option>
+                    <option value="spotify">Spotify</option>
+                </select>
+            </div>
+
+            <div id="result"></div>
+
+        </div>
+
+        <div class="content-right">
+            <div class="right-top">
+                <button id="disconnect">DISCONNECT</button>
+                
+                <button id="playlist">ADD PLAYLIST</button>
+                
+                    <%if(connection){%>
+
+                        <select id="voice_channel" disabled>
+                            <option value="placeholder">SELECT VOICE CHANNEL</option>
+                        </select>
+
+                    <%}else{%>
+
+                        <select id="voice_channel">
+                            <option value="placeholder">SELECT VOICE CHANNEL</option>
+                        </select>
+
+                    <%}%>
+            </div>
+
+            <div id="queue">
+
+                <%if(serverQueue){%>
+
+                    <div class="current">
+    
+                        <h1>Current Playing</h1>
+        
+                        <div class="playlist-container current-track" id="<%=serverQueue.songs[0].request_id%>">
+                            <div class="item-left">
+                                <img class="playlist-img curr_track" src="<%=serverQueue.songs[0].thumbnails[0].url%>">
+                            </div>
+        
+                            <span class="line"></span>
+        
+                            <div class="item-middle">
+                                <p class="judul curr_track"><%=serverQueue.songs[0].title.length > 20 ? `${serverQueue.songs[0].title.substr(0, 20)}...` : serverQueue.songs[0].title%></p>
+                            </div>
+        
+                            <span class="line"></span>
+        
+                            <div class="item-right">
+                                <p class="time curr_track"><%=bot.msToTime(serverQueue.songs[0].duration)%></p>
+                            </div>
+                        </div>
+        
+                    </div>
+        
+                    <%if(serverQueue.songs.length > 1){%>
+    
+                        <div class="queue">
+        
+                            <h1 class="queue-header">Queue</h1>
+
+                            <%for(let i = 1; i < serverQueue.songs.length;i++){%>
+                                <% let song = serverQueue.songs[i] %> 
+                                <div class="playlist-container" id="<%=song.request_id%>">
+                                    <div class="item-left">
+                                        <img class="playlist-img" src="<%=song.thumbnails[0].url%>">
+                                    </div>
+                
+                                    <span class="line"></span>
+                
+                                    <div class="item-middle">
+                                        <p class="judul"><%=song.title.length > 20 ? `${song.title.substr(0, 20)}...` : song.title%></p>
+                                    </div>
+                
+                                    <span class="line"></span>
+                
+                                    <div class="item-right">
+                                        <p class="time"><%=bot.msToTime(song.duration)%></p>
+                                    </div>
+                
+                                    <div class="delete">
+                                        <button type="button" class="delete-btn" id="<%=song.request_id%>" onclick="remove_queue('<%=song.request_id%>');"></button>
+                                    </div>
+                                </div>
+
+                            <%}%>
+                            <!-- <div class="playlist-container">
+                                <div class="item-left">
+                                    <img class="playlist-img" src="./images/ibas_diiiihhh.jpg">
+                                </div>
+            
+                                <span class="line"></span>
+            
+                                <div class="item-middle">
+                                    <p class="judul">Bad Run - lil b3ng$</p>
+                                </div>
+            
+                                <span class="line"></span>
+            
+                                <div class="item-right">
+                                    <p class="time">00.00</p>
+                                </div>
+            
+                                <div class="delete">
+                                    <button type="button" class="delete-btn" href="#"></button>
+                                </div>
+                            </div>
+            
+                            <div class="playlist-container">
+                                <div class="item-left">
+                                    <img class="playlist-img" src="./images/ibas_diiiihhh.jpg">
+                                </div>
+            
+                                <span class="line"></span>
+            
+                                <div class="item-middle">
+                                    <p class="judul">Kukira Ku Jawara - lil dRvn$</p>
+                                </div>
+            
+                                <span class="line"></span>
+            
+                                <div class="item-right">
+                                    <p class="time">00.00</p>
+                                </div>
+            
+                                <div class="delete">
+                                    <button type="button" class="delete-btn" href="#"></button>
+                                </div>
+                            </div>
+            
+                            <div class="playlist-container">
+                                <div class="item-left">
+                                    <img class="playlist-img" src="./images/ibas_diiiihhh.jpg">
+                                </div>
+            
+                                <span class="line"></span>
+            
+                                <div class="item-middle">
+                                    <p class="judul">Title</p>
+                                </div>
+            
+                                <span class="line"></span>
+            
+                                <div class="item-right">
+                                    <p class="time">00.00</p>
+                                </div>
+            
+                                <div class="delete">
+                                    <button type="button" class="delete-btn" href="#"></button>
+                                </div>
+                            </div>
+                        </div> -->
+    
+                    <%}%>
+    
+                <%}%>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="box-player">
+        <div class="img-container" >
+            <img class="image-player" id="image-player" src="<%=req.domain%>/storage/image/circle-icon.png" alt="">
+        </div>
+        <div class="playback">
+            <div class="up">
+                <img class="previous control" src="<%=req.domain%>/storage/image/previous.png" alt="" width="60" height="60">
+                <img class="playpauseTrack" src="<%=req.domain%>/storage/image/play-button-icon-vector-illustration.png" height="100" width="100" alt="">
+                <img class="next control" src="<%=req.domain%>/storage/image/next.png" alt="" width="60" height="60">
+                <img class="loop control" src="<%=req.domain%>/storage/image/loop.png" alt="" width="50" height="50">
+            </div>
+            <div class="bottom">
+                <span class="duration-time">00:00</span>
+                <div class="bar-area">
+                    <input type="range" name="progress" value="0" min="0" max="100" id="progress">
+                </div>
+                <%if(serverQueue){%>
+                    <span class="full-duration"><%=bot.msToTime(serverQueue.songs[0].duration)%></span>
+                <%}else{%>
+                    <span class="full-duration">00:00</span>
+                <%}%>
+            </div>
+        </div>
+    
+        <div class="volume">
+            <i class="volume-control bi bi-volume-down"></i>
+            <div class="volume-area">
+                <input type="range" value="100" name="volume" id="volume">
+            </div>
+            <i class="volume-control bi bi-volume-up"></i>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/queue.js"></script>
+    <script type="text/javascript" src="/player/queue.js"></script>
+
+</body>
+
+</html>

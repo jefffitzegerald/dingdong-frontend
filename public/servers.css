@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #000;
+    color: #fff;
+}
+
+.header {
+    text-align: center;
+    font-size: 25px;
+    margin: 30px;
+}
+
+.guilds {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px;
+}
+
+.guild {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #C4C4C4;
+    margin: 5px;
+    width: 400px;
+    height: auto;
+}
+
+.icon {
+    width: auto;
+    height: 120px;
+    border-radius: 50%;
+}
+
+p {
+    color: black;
+}
+
+.guild-name p {
+    font-weight: bold;
+}
+
+.manage, .button-manage {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 5px;
+}
+
+.manage {
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.server {
+    background-color: #E1DFDF;
+}
+
+.server:hover {
+    background-color: #d6cece;
+}
+
+.invite, .disconnect {
+    background-color: #1DB954;
+}
+
+.invite:hover, .disconnect:hover {
+    background-color: #1aa34a;
+}
+
+.server:active, .invite:active, .disconnect:active {
+    opacity: 80%;
+}

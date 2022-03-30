@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/servers.css">
+    <%- include('partials/head.ejs') %>
+</head>
+<body>
+    
+    <%- include('partials/navbar.ejs') %>
+
+    <div class="header">
+        <h1>MANAGE SERVERS</h1>
+    </div>
+
+    <div class="guilds">
+
+        <%if(guilds.length > 0) {%>
+
+            <%for (let i = 0; i < guilds.length; i++) {%>
+
+                <%if((guilds[i].permissions & 0x00000020) == 0x00000020){%>
+
+                    <div class="guild">
+
+                        <div class="guild-icon">
+                            <img id="<%=guilds[i].id%>" class="icon <%=guilds[i].icon%>" alt="">
+                        </div>
+            
+                        <div class="role">
+                            <%if(guilds[i].owner){%>
+                                <p>
+                                    OWNER
+                                </p>
+                            <%}else{%>
+                                <p>
+                                    ADMIN / MODERATOR
+                                </p>
+                            <%}%>
+                        </div>
+            
+                        <div class="guild-name">
+                            <p>
+                                <%=guilds[i].name.length > 25 ? `${guilds[i].name.substr(0, 25)}...` : guilds[i].name%> 
+                            </p>
+                        </div>
+            
+                        <div class="button-manage">
+            
+                            <%if(!bot.guilds.cache.has(guilds[i].id)){%>
+
+                                <button id="<%=guilds[i].id%>" class="manage server" type="button" disabled>
+            
+                                    <i class="bi bi-person-workspace"></i>
+                                    <p>MANAGE</p>
+                
+                                </button>
+
+                                <button value="<%=guilds[i].id%>" class="connection manage invite" type="button">
+                                
+                                    <i class="bi bi-plus-square"></i>
+                                    <p>CONNECT</p>
+                
+                                </button>
+
+                            <%}else{%>
+
+                                <button id="<%=guilds[i].id%>" class="manage server" type="button">
+            
+                                    <i class="bi bi-person-workspace"></i>
+                                    <p>MANAGE</p>
+                
+                                </button>
+
+                                <button value="<%=guilds[i].id%>" class="connection manage disconnect" type="button">
+                                
+                                    <i class="bi bi-dash-square"></i>
+                                    <p>DISCONNECT</p>
+                
+                                </button>
+                            <%}%>
+            
+                        </div>
+            
+                    </div>
+
+                <%}%>
+
+            <%}%>
+
+        <%}%>
+
+    </div>
+
+    <script type="text/javascript" src="/guilds.js"></script>
+
+</body>
+</html>

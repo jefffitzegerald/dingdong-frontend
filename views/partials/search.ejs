@@ -1,0 +1,166 @@
+<div class="search-container">
+
+    <form action="/search" method="post">
+
+        <select name="type" id="type">
+            
+            <%if(r === "/search"){%>
+
+                <%if(req.query.type){%>
+
+                    <%if(req.query.type === "youtube"){%>
+    
+                        <option value="youtube">YouTube</option>
+                        <option value="placeholder">No Selected</option>
+                        <option value="spotify">Spotify</option>
+                        <option value="soundcloud">Soundcloud</option>
+    
+                    <%}else if(req.query.type === "spotify"){%>
+                        
+                        <option value="spotify">Spotify</option>
+                        <option value="placeholder">No Selected</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="soundcloud">Soundcloud</option>
+    
+                    <%}else if(req.query.type === "soundcloud"){%>
+    
+                        <option value="soundcloud">Soundcloud</option>
+                        <option value="placeholder">No Selected</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="spotify">Spotify</option>
+    
+                    <%}else{%>
+    
+                        <option value="placeholder">No Selected</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="spotify">Spotify</option>
+                        <option value="soundcloud">Soundcloud</option>
+    
+                    <%}%> 
+    
+                <%}else{%>
+    
+                    <option value="placeholder">No Selected</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="spotify">Spotify</option>
+                    <option value="soundcloud">Soundcloud</option>
+    
+                <%}%>
+
+            <%}else{%>
+
+                <%if(req.session.search){%>
+
+                    <%if(req.session.search.type === "youtube"){%>
+    
+                        <option value="youtube">YouTube</option>
+                        <option value="placeholder">No Selected</option>
+                        <option value="spotify">Spotify</option>
+                        <option value="soundcloud">Soundcloud</option>
+    
+                    <%}else if(req.session.search.type === "spotify"){%>
+                        
+                        <option value="spotify">Spotify</option>
+                        <option value="placeholder">No Selected</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="soundcloud">Soundcloud</option>
+    
+                    <%}else if(req.session.search.type === "soundcloud"){%>
+    
+                        <option value="soundcloud">Soundcloud</option>
+                        <option value="placeholder">No Selected</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="spotify">Spotify</option>
+    
+                    <%}else{%>
+    
+                        <option value="placeholder">No Selected</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="spotify">Spotify</option>
+                        <option value="soundcloud">Soundcloud</option>
+    
+                    <%}%> 
+    
+                <%}else{%>
+    
+                    <option value="placeholder">No Selected</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="spotify">Spotify</option>
+                    <option value="soundcloud">Soundcloud</option>
+    
+                <%}%>
+                
+            <%}%> 
+
+        </select>
+
+        <%if(r === "/search"){%>
+            <input type="text" name="query" id="query" placeholder="SEARCH" value="<%=req.query.search ? req.query.search.split("+").join(" ") : ''%>" required>
+        <%}else{%>
+            <input type="text" name="query" id="query" placeholder="SEARCH" value="<%=req.session.search ? req.session.search["query"].split("+").join(" ") : ''%>" required>
+        <%}%>
+
+        <button type="submit">
+            <i class="bi bi-search"></i>
+        </button>
+
+    </form>
+
+</div>
+<style>
+
+.search-container {
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #524E4E;
+}
+
+select, input {
+    font-family: 'Poppins', sans-serif;
+}
+
+select {
+    height: 25px;
+    width: 10rem;
+}
+
+input[type=text] {
+    width: 25rem;
+}
+
+input[type=text], select {
+    height: 2.5rem;
+    font-size: 15px;
+}
+
+button[type=submit] {
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    background: none;
+    border: none;
+}
+
+button[type=submit]:hover {
+    opacity: 90%;
+}
+
+button[type=submit]:active {
+    opacity: 80%;
+}
+
+@media only screen and (max-width: 600px) {
+
+    input[type=text] {
+        width: 14rem;
+    }
+
+    select {
+        width: 7rem;
+    }
+
+}
+
+</style>

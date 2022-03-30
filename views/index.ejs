@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Ding Dong Entertainment" />
+    <meta property="og:description" content="Find video or track from Ding Dong Entertainment freely now!">
+    <meta property="og:type" content="image/jpeg" />
+    <meta property="og:url" content="<%=req.domain%>" />
+    <meta property="og:image" content="<%=req.domain%>/storage/image/ding_dong_banner.jpeg" />
+    <link rel="stylesheet" href="/index.css">
+    <%- include('partials/head.ejs') %> 
+</head>
+
+<body>
+    <%- include('partials/navbar.ejs') %> 
+
+    <div class="content-wrapper">
+        <img src="<%=req.domain%>/storage/image/Arrow_Left.png" alt="" class="arrow-left">
+        
+        <div class="slider-content" id="slider">
+            <div class="image-wrapper">
+                <img src="<%=req.domain%>/storage/image/youtube_home.png" class="banner image-wrapper" id="banner">
+            </div>
+            
+            <div class="content" id="content">
+                
+                <p>
+                    Easily get videos from YouTube, then download without having to watch ads.
+                </p>
+                
+                <button class="youtube btn-content" onclick="page_direct('youtube')">
+                    SEARCH YOUTUBE VIDEOS
+                </button>
+            </div>
+        </div>
+
+        <img src="<%=req.domain%>/storage/image/Arrow_Right.png" alt="" class="arrow-right">
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+    <script src="./home.js"></script>
+</body>
+
+</html>
