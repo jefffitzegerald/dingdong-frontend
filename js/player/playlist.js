@@ -2,6 +2,7 @@ let index = 0;
 let isLoad = false;
 let updateTimer;
 
+let isRotate = false;
 let isPlaying = false;
 let isShuffle = false;
 let isLoop = false;
@@ -188,15 +189,17 @@ audio.addEventListener("play", () => {
 
     playpauseButton.src = `${window.location.origin}/storage/image/pause-circle-fill.svg`;
     playpauseButton_2.setAttribute("style", "background-image: url('/storage/image/pause.png');");
-    rotateAnimation("image-player", 50);
+    if(!isRotate) rotateAnimation("image-player", 50);
 
 });
 
 audio.addEventListener("pause", () => {
 
     isPlaying = false;
+    isRotate = false;
+
     playpauseButton.src = `${window.location.origin}/storage/image/play-button-icon-vector-illustration.png`;
-    playpauseButton_2.setAttribute("style", "background-image: url('/storage/image/play.png');")
+    playpauseButton_2.setAttribute("style", "background-image: url('/storage/image/play.png');");
 
 });
 
@@ -233,7 +236,8 @@ let looper;
 let degrees = 0;
 
 function rotateAnimation(el,speed){
-  if(!isPlaying) return;
+    if(!isPlaying) return;
+    if(!isRotate) isRotate = true;
 
 	var elem = document.getElementById(el);
 	if(navigator.userAgent.match("Chrome")){
