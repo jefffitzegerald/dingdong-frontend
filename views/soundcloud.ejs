@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:site_name" content="Ding Dong Entertainment" />
     <meta property="og:title" content="<%=track.title.length > 67 ? `${track.title.substr(0, 67)}...` : track.title%>" />
-    <meta property="og:description" content="<%=track.description.length > 256 ? `${track.description.substr(0, 256)}...` : track.description%>">
+    <meta property="og:description" content="<%=track.description ? track.description.length > 256 ? `${track.description.substr(0, 256)}...` : track.description : ""%>">
     <meta property="og:type" content="image/jpeg" />
     <meta property="og:url" content="/soundcloud/<%=req.params.author_permalink%>/<%=req.params.permalink%>" />
     <meta property="og:image" content="<%=track.thumbnails[0].url ? track.thumbnails[0].url : `${req.domain}/storage/image/icon-soundcloud.png`%>" />
