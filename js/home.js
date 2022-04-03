@@ -74,24 +74,22 @@ function arrow_left() {
         image_wrapper.appendChild(banner)
         slider.appendChild(image_wrapper);
 
-        if(slide.type.toLowerCase() !== "home") {
-            let content = document.createElement("div");
-            content.setAttribute("class", "content");
-            content.setAttribute("id", "content");
+        let content_type = document.createElement("div");
+        content_type.setAttribute("class", "content");
+        content_type.setAttribute("id", "content");
 
-            const p = document.createElement("p");
-            p.textContent = slide.content.text;
-            content.appendChild(p);
+        const p = document.createElement("p");
+        p.textContent = slide.content.text;
+        content_type.appendChild(p);
 
-            const button = document.createElement("button");
-            button.setAttribute("type", "button");
-            button.setAttribute("class", slide.content.button.class);
-            button.setAttribute("onclick", `page_direct('${slide.type}')`);
-            button.textContent = slide.content.button.content;
+        const button = document.createElement("button");
+        button.setAttribute("type", "button");
+        button.setAttribute("class", slide.content.button.class);
+        button.setAttribute("onclick", `page_direct('${slide.type}')`);
+        button.textContent = slide.content.button.content;
 
-            content.appendChild(button);
-            slider.appendChild(content);
-        }
+        content_type.appendChild(button);
+        slider.appendChild(content);
         
         tl.fromTo(".slider-content", { x: 200, opacity: 0 }, { x: 0, opacity: 1 });
     }, 750);
@@ -124,24 +122,22 @@ function arrow_right() {
         image_wrapper.appendChild(banner)
         slider.appendChild(image_wrapper);
 
-        if(slide.type.toLowerCase() !== "home") {
-            let content = document.createElement("div");
-            content.setAttribute("class", "content");
-            content.setAttribute("id", "content");
+        let content_type = document.createElement("div");
+        content_type.setAttribute("class", "content");
+        content_type.setAttribute("id", "content");
 
-            const p = document.createElement("p");
-            p.textContent = slide.content.text;
-            content.appendChild(p);
+        const p = document.createElement("p");
+        p.textContent = slide.content.text;
+        content_type.appendChild(p);
 
-            const button = document.createElement("button");
-            button.setAttribute("type", "button");
-            button.setAttribute("class", slide.content.button.class);
-            button.setAttribute("onclick", `page_direct('${slide.type}')`);
-            button.textContent = slide.content.button.content;
+        const button = document.createElement("button");
+        button.setAttribute("type", "button");
+        button.setAttribute("class", slide.content.button.class);
+        button.setAttribute("onclick", `page_direct('${slide.type}')`);
+        button.textContent = slide.content.button.content;
 
-            content.appendChild(button);
-            slider.appendChild(content);
-        }
+        content_type.appendChild(button);
+        slider.appendChild(content);
         
         tl.fromTo(".slider-content", { x: -200, opacity: 0 }, { x: 0, opacity: 1 });
     }, 750);
